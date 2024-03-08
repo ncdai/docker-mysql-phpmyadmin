@@ -1,4 +1,4 @@
-# Docker MySQL + phpMyAdmin
+# Docker + MySQL + phpMyAdmin
 
 ## Config ENV
 
