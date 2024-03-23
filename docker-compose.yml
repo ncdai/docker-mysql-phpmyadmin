@@ -2,8 +2,11 @@ version: '3'
 services:
   mysql:
     image: mysql:8.0
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    env_file: .env
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    restart: unless-stopped
     ports:
       - 3306:3306
     volumes:
@@ -11,11 +14,13 @@ services:
 
   phpmyadmin:
     image: phpmyadmin:5.2.1-apache
+    env_file: .env
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306
       UPLOAD_LIMIT: 32M
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    restart: unless-stopped
     ports:
       - 8080:80
     depends_on:
