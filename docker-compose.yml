@@ -6,6 +6,9 @@ services:
     env_file: .env
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
     restart: unless-stopped
     ports:
       - 3306:3306
@@ -18,8 +21,8 @@ services:
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306
-      UPLOAD_LIMIT: 32M
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      UPLOAD_LIMIT: 32M
     restart: unless-stopped
     ports:
       - 8080:80
