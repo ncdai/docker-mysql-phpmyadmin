@@ -38,5 +38,4 @@ volumes:
 
 networks:
   dmps_network:
-    name: dmps_network
     driver: bridge
