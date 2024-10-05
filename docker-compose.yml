@@ -10,10 +10,12 @@ services:
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
       MYSQL_DATABASE: ${DATABASE_NAME}
     restart: unless-stopped
+    volumes:
+      - dmps_db_data:/var/lib/mysql
     ports:
       - 3306:3306
-    volumes:
-      - ./db_data:/var/lib/mysql
+    networks:
+      - dmps_network
 
   phpmyadmin:
     image: phpmyadmin:5.2.1-apache
@@ -26,5 +28,15 @@ services:
     restart: unless-stopped
     ports:
       - 8080:80
+    networks:
+      - dmps_network
     depends_on:
       - mysql
+
+volumes:
+  dmps_db_data:
+
+networks:
+  dmps_network:
+    name: dmps_network
+    driver: bridge
